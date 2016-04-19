@@ -52,7 +52,5 @@ nb-configuration.xml
 # App Files
 # --------------------
 data/
-project/project/target/
-project/target/
 target/
 temp/

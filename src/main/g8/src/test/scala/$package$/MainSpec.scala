@@ -1,18 +1,22 @@
 package $package$
 
-import org.specs2.mutable._
+import collection.mutable.Stack
+import org.scalatest._
 
-class MainSpec extends Specification {
+class MainSpec extends FlatSpec with Matchers {
 
-  "The 'Hello world' string" should {
-    "contain 11 characters" in {
-      "Hello world" must have size(11)
-    }
-    "start with 'Hello'" in {
-      "Hello world" must startWith("Hello")
-    }
-    "end with 'world'" in {
-      "Hello world" must endWith("world")
-    }
+  "A Stack" should "pop values in last-in-first-out order" in {
+    val stack = new Stack[Int]
+    stack.push(1)
+    stack.push(2)
+    stack.pop() should be (2)
+    stack.pop() should be (1)
   }
-} 
+
+  it should "throw NoSuchElementException if an empty stack is popped" in {
+    val emptyStack = new Stack[Int]
+    a [NoSuchElementException] should be thrownBy {
+      emptyStack.pop()
+    } 
+  }
+}
